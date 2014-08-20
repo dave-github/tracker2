@@ -1,44 +1,105 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <title>Hello World</title>
+        <title>Media Example</title>
+        
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+        
+        <script type="text/javascript" charset="utf-8">
+            
+            $(document).ready(function() {
+                // jQuery is properly loaded at this point
+                // so proceed to bind the Cordova's deviceready event
+                $(document).bind('deviceready', function() {
+                    // Now Cordova is loaded
+                    // its great JS API can be used to access low-level
+                    // features as accelerometer, contacts and so on
+
+                    var PGLowLatencyAudio = window.plugins.LowLatencyAudio;
+             
+                    PGLowLatencyAudio.preloadAudio('drums', "assets/VFH1 128BPM Heavy Duty Kit 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('drums2', "assets/VFH1 128BPM Flatbeat Kit 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody', "assets/VFH1 128BPM Heavy Duty Melody 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody2', "assets/VFH1 128BPM Dogde Melody 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody3', "assets/VFH1 128BPM Dogde Melody 2.wav", 1);
+                    //PGLowLatencyAudio.loop('drums');
+                    //PGLowLatencyAudio.play('melody');  
+
+                    $("#stop").touchstart(function() {
+                        PGLowLatencyAudio.stop('drums');
+                        PGLowLatencyAudio.stop('melody');
+                        PGLowLatencyAudio.stop('melody2');
+                        PGLowLatencyAudio.stop('melody3');
+                    });
+                    
+                     $("#drum").touchstart(function() {
+                        PGLowLatencyAudio.loop('drums');
+                    });
+                    
+                    $("#drum2").touchstart(function() {
+                        PGLowLatencyAudio.loop('drums2');
+                    });
+                    
+                    $("#melody").touchstart(function() {
+                        PGLowLatencyAudio.loop('melody');
+                    });
+                    
+                    $("#melody2").touchstart(function() {
+                        PGLowLatencyAudio.loop('melody2');
+                    });
+                     $("#melody3").touchstart(function() {
+                        PGLowLatencyAudio.loop('melody3');
+                    });
+                    
+                    $("#stop_drum").touchstart(function() {
+                        PGLowLatencyAudio.stop('drums');
+                        PGLowLatencyAudio.stop('drums2');
+                    });
+                    $("#stop_melody").touchstart(function() {
+                        PGLowLatencyAudio.stop('melody');
+                        PGLowLatencyAudio.stop('melody2');
+                        PGLowLatencyAudio.stop('melody3');
+                        
+                    });
+
+                    $("#play").touchstart(function() {
+                        
+                        timer = setTimeout(function (event) {
+
+                            console.log('starting...');
+                            PGLowLatencyAudio.loop('drums');
+                            PGLowLatencyAudio.loop('melody');
+                            PGLowLatencyAudio.loop('melody2');
+                            PGLowLatencyAudio.loop('melody3');
+                            PGLowLatencyAudio.loop('drums2');
+
+                            $('#textTobeSearched').text(text);
+                        }, 2000);
+                        
+                        
+                        
+                        
+                    });
+                });
+            });
+
+        </script>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+    <style> a { line-height:60px; font-size:20px }</style>
+    <a href="#" class="btn large" id="play">Play Drums & Melody</a><br>
+    <a href="#" class="btn large" id="drum">Play Drums</a><br>
+    <a href="#" class="btn large" id="drum2">Play Drums 2</a><br>
+    <a href="#" class="btn large" id="melody">Play Melody</a><br>
+    <a href="#" class="btn large" id="melody2">Play Melody 2</a><br>
+    <a href="#" class="btn large" id="melody3">Play Melody 3</a><br>
+    <a href="#" class="btn large" id="stop_drum">stop Drum</a><br>
+    <a href="#" class="btn large" id="stop_melody">stop Melody</a><br>
+    <a href="#" class="btn large" id="stop">Stop Playing</a><br>
+    <p id="audio_position"></p><br>
+</body>
 </html>
