@@ -21,11 +21,11 @@
 
                     var PGLowLatencyAudio = window.plugins.LowLatencyAudio;
              
-                    PGLowLatencyAudio.preloadAudio('drums', "assets/VFH1 128BPM Heavy Duty Kit 1.wav", 1);
-                    PGLowLatencyAudio.preloadAudio('drums2', "assets/VFH1 128BPM Flatbeat Kit 1.wav", 1);
-                    PGLowLatencyAudio.preloadAudio('melody', "assets/VFH1 128BPM Heavy Duty Melody 1.wav", 1);
-                    PGLowLatencyAudio.preloadAudio('melody2', "assets/VFH1 128BPM Dogde Melody 1.wav", 1);
-                    PGLowLatencyAudio.preloadAudio('melody3', "assets/VFH1 128BPM Dogde Melody 2.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('drums', "VFH1 128BPM Heavy Duty Kit 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('drums2', "VFH1 128BPM Flatbeat Kit 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody', "VFH1 128BPM Heavy Duty Melody 1.wav", 1);
+                    PGLowLatencyAudio.preloadAudio('melody2', "VFH1 128BPM Dogde Melody 1.wav", 1);
+                 //   PGLowLatencyAudio.preloadAudio('melody3', "VFH1 128BPM Dogde Melody 2.wav", 1);
                     //PGLowLatencyAudio.loop('drums');
                     //PGLowLatencyAudio.play('melody');  
 
@@ -33,7 +33,7 @@
                         PGLowLatencyAudio.stop('drums');
                         PGLowLatencyAudio.stop('melody');
                         PGLowLatencyAudio.stop('melody2');
-                        PGLowLatencyAudio.stop('melody3');
+                     //   PGLowLatencyAudio.stop('melody3');
                     });
                     
                      $("#drum").touchstart(function() {
@@ -74,7 +74,7 @@
                             PGLowLatencyAudio.loop('drums');
                             PGLowLatencyAudio.loop('melody');
                             PGLowLatencyAudio.loop('melody2');
-                            PGLowLatencyAudio.loop('melody3');
+                         //   PGLowLatencyAudio.loop('melody3');
                             PGLowLatencyAudio.loop('drums2');
 
                             $('#textTobeSearched').text(text);
